@@ -567,7 +567,9 @@ ErrorCodes SolverImpl::Solve() {
   }
   if (!is_converged && iter == opts.iterations_max) {
     stats.status = SolveStatus::MaxIterations;
-    std::cout << "Max iterations reached" << std::endl;
+    if (opts.verbose > Verbosity::Silent) {
+      fmt::print("MAX ITERATIONS REACHED!\n");
+    }
   }
   stats.iterations = iter + 1;
   if (opts.verbose > Verbosity::Silent) {
